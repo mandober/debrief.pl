@@ -8,6 +8,18 @@
 * Python
 * VBA
 
+Any language construct (declaration, assignment, iteration, etc.) can be formed in terms of functions.
+
+A declaration like `let x = 3` that binds the identifier `x` to the value 3, can be in the form of a function named `let` that fixes its parameter (i.e. the value 3) and returns a function named `x` that just returns the fixes parameter, no matter how it's called (with or without args).
+
+```js
+// `let` is a reserved keyword in js
+let letter = a => _ => a;
+let x = letter(3);
+x();   // 3
+x(42); // 3
+```
+
 
 ## Math
 
@@ -110,9 +122,3 @@ where U: From<T>
   x + y
 }
 ```
-
-
-
-
-
-

@@ -1,1 +1,1 @@
-# Terms
+# TERMS

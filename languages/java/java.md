@@ -1,30 +1,10 @@
----
-language: java
-contributors:
-    - ["Jake Prather", "https://github.com/JakeHP"]
-    - ["Jakukyo Friel", "https://weakish.github.io"]
-    - ["Madison Dickson", "https://github.com/mix3d"]
-    - ["Simon Morgan", "https://sjm.io/"]
-    - ["Zachary Ferguson", "https://github.com/zfergus2"]
-    - ["Cameron Schermerhorn", "https://github.com/cschermerhorn"]
-    - ["Rachel Stiyer", "https://github.com/rstiyer"]
-    - ["Michael Dähnert", "https://github.com/JaXt0r"]
-    - ["Rob Rose", "https://github.com/RobRoseKnows"]
-    - ["Sean Nam", "https://github.com/seannam"]
-    - ["Shawn M. Hanes", "https://github.com/smhanes15"]
-filename: LearnJava.java
----
-
 Java is a general-purpose, concurrent, class-based, object-oriented computer
 programming language.
-[Read more here.](https://docs.oracle.com/javase/tutorial/java/)
+
+[javasetut](https://docs.oracle.com/javase/tutorial/java/)
+
 
 ```java
-// Single-line comments start with //
-
-/*
-Multi-line comments look like this.
-*/
 
 /**
  * JavaDoc comments look like this. Used to describe the Class or various
@@ -42,13 +22,14 @@ Multi-line comments look like this.
 
 // Import ArrayList class inside of the java.util package
 import java.util.ArrayList;
+
 // Import all classes inside of java.security package
 import java.security.*;
 
+
 public class LearnJava {
 
-    // In order to run a java program, it must have a main method as an entry
-    // point.
+    // In order to run a java program, it must have main method
     public static void main(String[] args) {
 
     ///////////////////////////////////////
@@ -127,6 +108,7 @@ public class LearnJava {
         /*
         *  Variable types
         */
+        
         // Byte - 8-bit signed two's complement integer
         // (-128 <= byte <= 127)
         byte fooByte = 100;
@@ -187,6 +169,7 @@ public class LearnJava {
         // BigInteger can be initialized using an array of bytes or a string.
         BigInteger fooBigInteger = new BigInteger(fooByteArray);
 
+
         // BigDecimal - Immutable, arbitrary-precision signed decimal number
         //
         // A BigDecimal takes two parts: an arbitrary precision integer
@@ -205,6 +188,7 @@ public class LearnJava {
         // Prefer the String constructor when you need an exact value.
         BigDecimal tenCents = new BigDecimal("0.1");
 
+
         // Strings
         String fooString = "My String Is Here!";
 
@@ -215,6 +199,7 @@ public class LearnJava {
         System.out.println(fooString);
         System.out.println(barString);
         System.out.println(bazString);
+
 
         // String Building
         // #1 - with plus operator
@@ -252,6 +237,7 @@ public class LearnJava {
         String.format("%s may prefer %s.", "Or you", "String.format()");
         // Output: Or you may prefer String.format().
 
+
         // Arrays
         // The array size must be decided upon instantiation
         // The following formats work for declaring an array
@@ -272,6 +258,7 @@ public class LearnJava {
         // Arrays are zero-indexed and mutable.
         intArray[1] = 1;
         System.out.println("intArray @ 1: " + intArray[1]); // => 1
+
 
         // Other data types worth checking out
         // ArrayLists - Like arrays except more functionality is offered, and
@@ -305,6 +292,7 @@ public class LearnJava {
         System.out.println("\n->Operators");
 
         int i1 = 1, i2 = 2; // Shorthand for multiple declarations
+
 
         // Arithmetic is straightforward
         System.out.println("1+2 = " + (i1 + i2)); // => 3
@@ -350,6 +338,7 @@ public class LearnJava {
         System.out.println(++i); // i = 2, prints 2 (pre-increment)
         System.out.println(i--); // i = 1, prints 2 (post-decrement)
         System.out.println(--i); // i = 0, prints 0 (pre-decrement)
+
 
         ///////////////////////////////////////
         // Control Structures
@@ -493,6 +482,7 @@ public class LearnJava {
         // Long
         // String
 
+
         ///////////////////////////////////////
         // Classes And Functions
         ///////////////////////////////////////
@@ -538,6 +528,8 @@ public class LearnJava {
 
     } // End main method
 } // End LearnJava class
+
+
 
 // You can include other, non-public outer-level classes in a .java file,
 // but it is not good practice. Instead split classes into separate files.
@@ -643,6 +635,7 @@ class PennyFarthing extends Bicycle {
     }
 }
 
+
 // Object casting
 // Since the PennyFarthing class is extending the Bicycle class, we can say
 // a PennyFarthing is a Bicycle and write :
@@ -698,6 +691,7 @@ public class ExampleClass extends ExampleClassParent implements InterfaceOne,
     }
 
 }
+
 
 // Abstract Classes
 
@@ -770,6 +764,7 @@ class Dog extends Animal
     }
 }
 
+
 // Final Classes
 
 // Final Class declaration syntax
@@ -793,6 +788,7 @@ public final class SaberToothedCat extends Animal
     }
 }
 
+
 // Final Methods
 public abstract class Mammal()
 {
@@ -806,6 +802,7 @@ public abstract class Mammal()
         return true;
     }
 }
+
 
 // Enum Type
 //
@@ -858,6 +855,7 @@ public class EnumTest {
 // Enum types are much more powerful than we show above.
 // The enum body can include methods and other fields.
 // You can see more at https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+
 
 // Getting Started with Lambda Expressions
 //
