@@ -1,11 +1,5 @@
 # Data modules
 
-> :browse Data.<TAB>
-Display all 109 possibilities? (y or n) y
-
-
-## Alphabetical index
-
 Data.Array                             
   Data.Array.Base                        
   Data.Array.IArray                      

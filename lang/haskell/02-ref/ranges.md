@@ -39,3 +39,7 @@ map (+1) [1..4]
 map (\x -> x + 5) [5..15]
 sum [1..10]
 ```
+
+
+Haskell knows Greek:
+> putStrLn ['α'..'ω']

@@ -34,7 +34,7 @@ data Integer
 - (<$>) :: Functor f => (a -> b) -> f a -> f b
 - (=<<) :: Monad m => (a -> m b) -> m a -> m b
 
-## Types
+## Types ★ ★ ★
 
 type FilePath = String
 type IOError = GHC.IO.Exception.IOException

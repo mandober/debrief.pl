@@ -1,15 +1,81 @@
 # Functions
 
-- A function has input and output
-- it describes how to produce the output from its input
-- Functions can be applied, which means that you give an input value as arg to the function and then expect to receive the corresponding output value.
-- Haskell functions are first class entities, they
-  - can be given names (can be bound to identifiers)
-  - can be the value of some expression
-  - can be members of a list
-  - can be elements of a tuple
-  - can be passed as parameters to a function
-  - can be returned from a function as a result
+<!-- TOC -->
+
+- [Functions](#functions)
+- [Function type ctor](#function-type-ctor)
+- [Infix operators](#infix-operators)
+- [Associativity and precedence](#associativity-and-precedence)
+- [Partial application](#partial-application)
+  - [Example with composition](#example-with-composition)
+- [Sectioning](#sectioning)
+- [HOF](#hof)
+- [Laws for quotients and remainders](#laws-for-quotients-and-remainders)
+- [Lambdas](#lambdas)
+- [Lambdas beneath let](#lambdas-beneath-let)
+- [From where to lambda](#from-where-to-lambda)
+- [The $ operator](#the--operator)
+
+
+<!-- /TOC -->
+
+## Concepts
+
+Function concepts:
+- purity
+- unary
+- currying, auto-currying, uncurrying
+- segmentation
+- function definition i.e. abstraction
+- signature
+- input/output value/type, vs tuples
+
+
+
+## Debrief
+
+* functions are pure, unary (auto-curried), referentially transparent
+* *function abstraction* (func IO)
+  - every function has a single input and a single output value
+  - tuples blur this concept
+  - func's type is given by its **signature**:     
+    `flip :: (a -> b -> c) -> b -> a -> c`
+  - tuple is a single value but repr multiple; `curry` and `uncurry` are 2 hofs that convert to/from functions accepting tuples and unary funcs.
+    - builtin (curried) func: `const :: a -> b -> a`
+    - uncurried const funcs : `uncurry const :: (c, b) -> c`
+    - func taking a tuple   : `snd :: (a, b) -> b`
+    - curried snd func      : `curry snd :: a -> c -> c`
+  - input one param, output one value, both of certain type:    
+    `(a -> b)` although the type may be the same (a -> a)
+  - funcs are unary, but n-ary funcs are repr as a seq of unary funcs:  
+    `(a -> b -> c)` is a func that takes arg a and returns func that takes arg b and returns c (where a, b, c are types of values, same or diff) 
+- *function application*
+  - function application is  (denoted as space-separated juxtaposition)
+  - func application has the highest precedence, 0, `infixr 0` (levels: 0-9)
+  - function application associates to the right, `infixr 0`
+  - `a -> a -> a` is in fact `a -> (a -> a)`
+- all functions are in fact *unary* but they are *auto-curried*
+- functions are *1st class values* (may be passed to and returned from funcs)
+- function may be named i.e. bound to an identifier
+- function may be a value if an expr; funcs may be members of lists and tuples
+- the arrow, `(->)`, is the *type ctor* for funcs (they lack data ctors)
+
+
+
+
+## Function type ctor
+
+```hs
+> :info (->)
+
+data (->) t1 t2                       -- Defined in ‘GHC.Prim’
+infixr 0 `(->)`
+
+instance Monad       ((->) r)         -- Defined in ‘GHC.Base’
+instance Functor     ((->) r)         -- Defined in ‘GHC.Base’
+instance Applicative ((->) a)         -- Defined in ‘GHC.Base’
+instance Monoid b => Monoid (a -> b)  -- Defined in ‘GHC.Base’
+```
 
 
 
@@ -193,29 +259,33 @@ The `div` function is often the more natural one to use, whereas the `quot` func
 
 
 ## Lambdas
-The lambdas beneath let expressions
 
-Anonymous function syntax in Haskell uses a backslash to represent a lambda.
+Lambda expressions are similar to their form in Lambda Calculus, only Haskell uses backslash `\` instead of `λ`; also Haskell's standard function ctor, `->`, is used in the place of LC's dot, `.`. The LC's shorthand, i.e. writting `λab.a` instead of `λa.λb.a`, also has a parallel in Haskell.
+
 
 ```hs
--- abstraction
-(\x -> x)
+-- LC:
+λx.x            -- I
+λab.a           -- K
+(\a -> a) b     -- applying func I to arg b: I b
 
--- application
-(\x -> x) 0
+-- Haskell
+\x -> x         -- I == id
+\a b -> a       -- K == const
+let a = b in c  -- let analog of: I b
+
+
+-- In (older) ghci use let:
+let k = (\x y -> x)
+
+-- or define a func using expr:
+let id x = x
 ```
 
-In ghci use `let`
-> let id = \x -> x
-> id 1
-1
 
-or define a func like this:
-> let id x = x
-> id 4
-4
+## Lambdas beneath let
 
-## From let to lambda
+From let expressions to lambda expressions
 
 ```hs
 let a = b in c
